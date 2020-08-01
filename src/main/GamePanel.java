@@ -18,6 +18,16 @@ public class GamePanel implements KeyListener {
 	
 	}
 		
+	final int MENU = 0;
+	final int GAME = 1;
+	
+	public void paintComponent(Graphics g) {
+		if (currentState == MENU) {
+			drawMenuState(g);
+		} else if (currentState == GAME) {
+			drawGameState(g);
+	}
+	}
 		void drawMenuState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GameName.WIDTH, GameName.HEIGHT);
@@ -28,6 +38,10 @@ public class GamePanel implements KeyListener {
 		g.drawString("Press Enter To Start", 100, 400);
 		 
 	}
+		void drawGameState(Graphics g) {
+			
+
+		}
 
 		@Override
 		public void keyTyped(KeyEvent e) {
