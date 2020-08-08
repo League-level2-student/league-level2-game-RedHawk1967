@@ -7,8 +7,8 @@ public class GameName {
 	GamePanel gpanel;
 	
 	
-	public static final int WIDTH = 500;
-	public static final int HEIGHT = 800;
+	public static final int WIDTH = 637;
+	public static final int HEIGHT = 358;
 	
 	public static void main(String[] args) {
 		GameName gname = new GameName();
