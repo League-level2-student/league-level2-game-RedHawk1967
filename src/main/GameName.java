@@ -2,7 +2,7 @@ package main;
 
 import javax.swing.JFrame;
 
-public class PONG {
+public class GameName {
 	
 	GamePanel gpanel;
 	
@@ -11,7 +11,7 @@ public class PONG {
 	public static final int HEIGHT = 358;
 	
 	public static void main(String[] args) {
-		PONG gname = new PONG();
+		GameName gname = new GameName();
 		gname.setup();
 		
 	}
@@ -20,20 +20,19 @@ public class PONG {
 	JFrame gframe;
 	
 
-	public PONG() {
+	public GameName() {
 		 gpanel = new GamePanel();
 gframe = new JFrame();
 	}
 
 	
-	//circle pong idea
-	//powerups ex if ball hits speed the ball goes faster or slow mo power
+	
 
 	
 
 
 public void setup() {
-	gframe.add(gpanel);
+	//gframe.add(gpanel);
 	
 	gframe.setSize(WIDTH,HEIGHT);
 	gframe.addKeyListener(gpanel);

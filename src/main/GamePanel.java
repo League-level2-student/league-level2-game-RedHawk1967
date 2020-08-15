@@ -9,14 +9,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 
-public class GamePanel extends JPanel implements KeyListener  {
-	public int paddleSpawnx = 620;
-	public int paddleSpawny = 179;
+public class GamePanel implements KeyListener {
+
 	Font MenuFont;
 	Font SmallFont;
-	Paddle paddle = new Paddle(paddleSpawnx,paddleSpawny,10,50,10);
+	
 	private BufferedImage background;
 	public GamePanel() {
 		MenuFont = new Font("Arial", Font.PLAIN, 48);
@@ -38,13 +36,12 @@ public class GamePanel extends JPanel implements KeyListener  {
 	}
 		void drawMenuState(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, PONG.WIDTH, PONG.HEIGHT);
+		g.fillRect(0, 0, GameName.WIDTH, GameName.HEIGHT);
 		g.setFont(MenuFont);
 		g.setColor(Color.WHITE);
-		g.drawString("PONG", 50, 100);
+		g.drawString("GAMENAME", 50, 100);
 		g.setFont(SmallFont);
-		g.drawString("Press Enter To Start", 100, 300);
-		g.drawString("By Jack", 200, 100);
+		g.drawString("Press Enter To Start", 100, 400);
 		 
 	}
 		void drawGameState(Graphics g) {
@@ -73,10 +70,6 @@ public class GamePanel extends JPanel implements KeyListener  {
 			// TODO Auto-generated method stub
 			// left rect up w down s
 			//right rect up up arrow down down arrow
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			currentState = GAME;
-		}
-		
 		}
 
 		@Override
