@@ -12,11 +12,17 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements KeyListener  {
-	public int paddleSpawnx = 620;
-	public int paddleSpawny = 179;
+	public int paddleSpawnx0 = 620;
+	public int paddleSpawny0 = 179;
+	public int paddleSpawnx1 = 20;
+	public int paddleSpawny1 = 179;
+	public int ballSpawnx = 318;
+	public int ballSpawny = 179;
 	Font MenuFont;
 	Font SmallFont;
-	Paddle paddle = new Paddle(paddleSpawnx,paddleSpawny,10,50,10);
+	Paddle paddle0 = new Paddle(paddleSpawnx0,paddleSpawnx0,10,50,10);
+	Paddle paddle1 = new Paddle(paddleSpawnx1,paddleSpawny1,10,50,10);
+	Ball ball = new Ball(ballSpawnx, ballSpawny, 5, 5, 75);
 	private BufferedImage background;
 	public GamePanel() {
 		MenuFont = new Font("Arial", Font.PLAIN, 48);
@@ -36,7 +42,7 @@ public class GamePanel extends JPanel implements KeyListener  {
 			drawEndState(g);
 		}
 	}
-		void drawMenuState(Graphics g) {
+		void drawMenuState(Graphics g) { 
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, PONG.WIDTH, PONG.HEIGHT);
 		g.setFont(MenuFont);
@@ -45,15 +51,13 @@ public class GamePanel extends JPanel implements KeyListener  {
 		g.setFont(SmallFont);
 		g.drawString("Press Enter To Start", 100, 300);
 		g.drawString("By Jack", 200, 100);
+	
 		 
 	}
 		void drawGameState(Graphics g) {
-			try {
-				background =ImageIO.read(getClass().getResourceAsStream("download.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}	
-			g.drawImage(background,0,0,null);
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, PONG.WIDTH, PONG.HEIGHT);
+		
 		}
 
 		
@@ -74,7 +78,7 @@ public class GamePanel extends JPanel implements KeyListener  {
 			// left rect up w down s
 			//right rect up up arrow down down arrow
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			currentState = GAME;
+			currentState++;
 		}
 		
 		}
