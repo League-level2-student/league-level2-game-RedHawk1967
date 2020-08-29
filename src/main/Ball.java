@@ -11,7 +11,7 @@ public class Ball extends GameObject{
 	}
 
 	
-	private void draw(Graphics g) {
+	public void draw(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.drawOval(x, y, width, height);
 	}
