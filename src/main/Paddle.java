@@ -15,4 +15,21 @@ public class Paddle extends GameObject {
 		g.drawRect(x, y, width, height);
 	}
 
+
+
+	public void right() {
+		x+=speed;
+		}
+		public void left() {
+		x-=speed;
+		}
+		public void down() {
+		y+=speed;
+		}
+		public void up() {
+		y-=speed;
+
+
+
+}
 }

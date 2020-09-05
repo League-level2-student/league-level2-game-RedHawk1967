@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener  {
-	public int paddleSpawnx0 = 400;
-	public int paddleSpawny0 = 139;
+	public int paddleSpawnx0 = 595;
+	public int paddleSpawny0 = 179;
 	public int paddleSpawnx1 = 20;
 	public int paddleSpawny1 = 179;
 	public int ballSpawnx = 318;
@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener  {
 	Timer frameDraw;
 	Font MenuFont;
 	Font SmallFont;
-	Paddle paddle0 = new Paddle(paddleSpawnx0,paddleSpawnx0,10,50,10);
+	Paddle paddle0 = new Paddle(paddleSpawnx0,paddleSpawny0,10,50,10);
 	Paddle paddle1 = new Paddle(paddleSpawnx1,paddleSpawny1,10,50,10);
 	Ball ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 75);
 	private BufferedImage background;
@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener  {
 	final int GAME = 1;
 	int currentState = MENU;
 	public void paintComponent(Graphics g) {
-		System.out.println("paint worked");
+		
 		if (currentState == MENU) {
 			drawMenuState(g);
 		} else if (currentState == GAME) {
@@ -93,12 +93,46 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener  {
 			//right rect up up arrow down down arrow
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
-			System.out.println("worked");
+			
 			if (currentState > 2) {
 				currentState = 0;
 			}
 		startGame();
 		}
+		
+		if (currentState == GAME) {
+
+			if (e.getKeyCode() == KeyEvent.VK_UP && paddle0.y > 0){
+				
+				paddle0.up();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN && paddle0.y < 265) {
+				paddle0.down();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_LEFT && paddle0.x > 328) {
+				paddle0.left();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT && paddle0.x < 605) {
+				paddle0.right(); System.out.println(paddle0.x);	
+			}
+		
+			if (e.getKeyCode() == KeyEvent.VK_W && paddle1.y > 0){
+				
+				paddle1.up();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_S && paddle1.y < 265) {
+				paddle1.down();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_A && paddle1.x > 0) {
+				paddle1.left();
+			}
+			if (e.getKeyCode() == KeyEvent.VK_D && paddle1.x < 308) {
+				paddle1.right();	
+			}
+
+		
+		}
+		
 		
 		}
 
