@@ -16,4 +16,25 @@ public class Ball extends GameObject{
 		g.drawOval(x, y, width, height);
 	}
 	
+	public void right() {
+		x+=3;
+		}
+		public void left() {
+		x-=3;
+		}
+		public void down() {
+		y+=3;
+		}
+		public void up() {
+		y-=3;
+
+
+
+}
+
+
+
+
+
+
 }
