@@ -17,6 +17,7 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	Random ballC = new Random();
+	
 	public int paddleSpawnx0 = 595;
 	public int paddleSpawny0 = 179;
 	public int paddleSpawnx1 = 20;
@@ -74,7 +75,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, PONG.WIDTH, PONG.HEIGHT);
+		checkCollison();
 		paddle0.draw(g);
+		
 		paddle1.draw(g);
 		ball1.draw(g);
 		if (num == 1) {
@@ -82,19 +85,29 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		}else if (num == 2) {
 			ball1.left(); 
 		}
-		if (ball1.x == paddle0.x) {
-			ball1.left();
-			System.out.println("hit paddle0");
-		}else if (ball1.x == paddle1.x) {
-			ball1.right(); System.out.println("hit paddle1");
-		}
-		
+				
 	}
 		
 	void drawEndState(Graphics g) {
 
 	}
 
+private void checkCollison() {
+		
+		
+		if (paddle0.collisionBox.intersects(ball1.collisionBox)) {
+			ball1.left(); System.out.println("hit paddle0");
+		
+		}
+		if (paddle1.collisionBox.intersects(ball1.collisionBox)) {
+			ball1.right(); System.out.println("hit paddle1");
+		}
+		
+		
+	}
+
+	
+	 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub

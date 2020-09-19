@@ -13,6 +13,7 @@ public class Paddle extends GameObject {
 	public void draw(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.drawRect(x, y, width, height);
+		g.fillRect(x, y, width, height);
 	}
 
 
