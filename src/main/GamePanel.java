@@ -77,14 +77,16 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		g.fillRect(0, 0, PONG.WIDTH, PONG.HEIGHT);
 		checkCollison();
 		paddle0.draw(g);
-		
+		paddle0.update();
+		paddle1.update();
+		ball1.update();
 		paddle1.draw(g);
 		ball1.draw(g);
 		if (num == 1) {
 			ball1.right();
 		}else if (num == 2) {
 			ball1.left(); 
-		}
+				}
 				
 	}
 		
@@ -96,11 +98,11 @@ private void checkCollison() {
 		
 		
 		if (paddle0.collisionBox.intersects(ball1.collisionBox)) {
-			ball1.left(); System.out.println("hit paddle0");
+			num = 2; 
 		
 		}
 		if (paddle1.collisionBox.intersects(ball1.collisionBox)) {
-			ball1.right(); System.out.println("hit paddle1");
+			num = 1; 
 		}
 		
 		

@@ -5,6 +5,9 @@ import java.awt.Graphics;
 
 public class Ball extends GameObject{
 
+	
+public int ball1speed = 3;
+	
 	public Ball(int xinfo, int yinfo, int widthinfo, int heightinfo, int speedinfo) {
 		super(xinfo, yinfo, widthinfo, heightinfo, speedinfo);
 		// TODO Auto-generated constructor stub
@@ -17,22 +20,26 @@ public class Ball extends GameObject{
 	}
 	
 	public void right() {
-		x+=3;
+		x+=ball1speed;
 		}
 		public void left() {
-		x-=3;
+		x-=ball1speed;
 		}
 		public void down() {
-		y+=3;
+		y+=ball1speed;
 		}
 		public void up() {
-		y-=3;
+		y-=ball1speed;
 
 
 
 }
 
-
+public void ballspeedincrease() {
+	
+	ball1speed++;
+	
+}
 
 
 
