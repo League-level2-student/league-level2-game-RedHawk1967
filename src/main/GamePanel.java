@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -17,7 +18,7 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	Random ballC = new Random();
-	
+	int framecount = 0;
 	public int paddleSpawnx0 = 595;
 	public int paddleSpawny0 = 179;
 	public int paddleSpawnx1 = 20;
@@ -30,7 +31,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	Font SmallFont;
 	Paddle paddle0 = new Paddle(paddleSpawnx0, paddleSpawny0, 10, 50, 10);
 	Paddle paddle1 = new Paddle(paddleSpawnx1, paddleSpawny1, 10, 50, 10);
-	Ball ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 75);
+	Ball ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 75,this);
 	private BufferedImage background;
 
 	public GamePanel() {
@@ -87,14 +88,20 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		}else if (num == 2) {
 			ball1.left(); 
 				}
-				
+	//ballspeed++;			
+	framecount++;
+	if (framecount % 30 == 0) {
+		ball1.ball1speed++;
+	}
+			 
+		
 	}
 		
 	void drawEndState(Graphics g) {
 
 	}
 
-private void checkCollison() {
+public void checkCollison() {
 		
 		
 		if (paddle0.collisionBox.intersects(ball1.collisionBox)) {
