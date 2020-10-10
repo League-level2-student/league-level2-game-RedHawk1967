@@ -93,12 +93,20 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	if (framecount % 30 == 0) {
 		ball1.ball1speed++;
 	}
-			 
+	if (ball1.x > 638 || ball1.x < 1) {
+		currentState = END;
+	}		 
 		
+	
 	}
 		
 	void drawEndState(Graphics g) {
-
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, PONG.WIDTH, PONG.HEIGHT);
+		g.setColor(Color.WHITE);
+		g.setFont(MenuFont);
+		g.drawString("well you lost", 100, 100);
+		
 	}
 
 public void checkCollison() {
