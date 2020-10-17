@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public int paddleSpawny1 = 179;
 	public int ballSpawnx = 318;
 	public int ballSpawny = 179;
-	int num = ballC.nextInt(2) + 1;
+
 	Timer frameDraw;
 	Font MenuFont;
 	Font SmallFont;
@@ -83,15 +83,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		ball1.update();
 		paddle1.draw(g);
 		ball1.draw(g);
-		if (num == 1) {
-			ball1.right();
-		}else if (num == 2) {
-			ball1.left(); 
-				}
+		
 	//ballspeed++;			
 	framecount++;
 	if (framecount % 30 == 0) {
-		ball1.ball1speed++;
+		ball1.speed++;
 	}
 	if (ball1.x > 638 || ball1.x < 1) {
 		currentState = END;
@@ -113,15 +109,29 @@ public void checkCollison() {
 		
 		
 		if (paddle0.collisionBox.intersects(ball1.collisionBox)) {
-			num = 2; 
-		
+			ball1.xvelocity = -ball1.speed;
+			int ydiff = ball1.y - paddle0.y; 
+			if (ydiff <= 20) {
+				ball1.yvelocity = -3;
+			}else if (ydiff < 30) {
+				ball1.yvelocity = 0;
+			}else {
+				ball1.yvelocity = 3;
+			}
+			
 		}
 		if (paddle1.collisionBox.intersects(ball1.collisionBox)) {
-			num = 1; 
+			ball1.xvelocity = ball1.speed;
 		}
 		
+		if (ball1.y < 5) {
+			ball1.yvelocity = 3;
+		}
 		
-	}
+		if (ball1.y > 353) {
+			ball1.yvelocity = -3;
+		}
+}
 
 	
 	 

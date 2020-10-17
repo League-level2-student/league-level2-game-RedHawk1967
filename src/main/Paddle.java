@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Paddle extends GameObject {
-
+	
+	
+	
 	public Paddle(int xinfo, int yinfo, int widthinfo, int heightinfo, int speedinfo) {
 		super(xinfo, yinfo, widthinfo, heightinfo, speedinfo);
 		// TODO Auto-generated constructor stub
