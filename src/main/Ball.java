@@ -51,7 +51,7 @@ public class Ball extends GameObject {
 	public void left() {
 		for (int i = xvelocity; i < 0; i++) {
 
-			x -= 1;
+		x -= 1;
 			super.update();
 			gpanel.checkCollison();
 		}

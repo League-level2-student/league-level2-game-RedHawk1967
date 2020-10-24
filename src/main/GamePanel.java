@@ -25,13 +25,15 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public int paddleSpawny1 = 179;
 	public int ballSpawnx = 318;
 	public int ballSpawny = 179;
-
+	public int powerup1spawnx = 30;
+	public int  powerup1spawny = 150;
 	Timer frameDraw;
 	Font MenuFont;
 	Font SmallFont;
-	Paddle paddle0 = new Paddle(paddleSpawnx0, paddleSpawny0, 10, 50, 10);
-	Paddle paddle1 = new Paddle(paddleSpawnx1, paddleSpawny1, 10, 50, 10);
-	Ball ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 75,this);
+	Powerups Powerup1= new Powerups(powerup1spawnx, powerup1spawny, 5, 5, 0);
+	Paddle paddle0 = new Paddle(paddleSpawnx0, paddleSpawny0, 10, 50, 20);
+	Paddle paddle1 = new Paddle(paddleSpawnx1, paddleSpawny1, 10, 50, 20);
+	Ball ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 25,this);
 	private BufferedImage background;
 
 	public GamePanel() {
@@ -86,7 +88,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		
 	//ballspeed++;			
 	framecount++;
-	if (framecount % 30 == 0) {
+	if (framecount % 100 == 0) {
 		ball1.speed++;
 	}
 	if (ball1.x > 638 || ball1.x < 1) {
@@ -128,10 +130,12 @@ public void checkCollison() {
 			ball1.yvelocity = 3;
 		}
 		
-		if (ball1.y > 353) {
+		if (ball1.y > 330) {
 			ball1.yvelocity = -3;
 		}
-}
+
+	}
+
 
 	
 	 
