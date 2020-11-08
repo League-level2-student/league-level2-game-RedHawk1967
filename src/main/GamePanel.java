@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
+	Random powerup1y = new Random();
+	Random powerup1x = new Random();
 	Random ballC = new Random();
+	ArrayList<Powerups> poweruparray = new ArrayList<Powerups>(); 
 	int framecount = 0;
 	public int paddleSpawnx0 = 595;
 	public int paddleSpawny0 = 179;
@@ -25,12 +29,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public int paddleSpawny1 = 179;
 	public int ballSpawnx = 318;
 	public int ballSpawny = 179;
-	public int powerup1spawnx = 30;
-	public int  powerup1spawny = 150;
+	public int powerup1spawnx = powerup1x.nextInt(607);
+	public int  powerup1spawny = powerup1y.nextInt(308);
 	Timer frameDraw;
 	Font MenuFont;
 	Font SmallFont;
-	Powerups Powerup1= new Powerups(powerup1spawnx, powerup1spawny, 5, 5, 0);
+	
 	Paddle paddle0 = new Paddle(paddleSpawnx0, paddleSpawny0, 10, 50, 20);
 	Paddle paddle1 = new Paddle(paddleSpawnx1, paddleSpawny1, 10, 50, 20);
 	Ball ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 25,this);
@@ -39,7 +43,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public GamePanel() {
 		MenuFont = new Font("Arial", Font.PLAIN, 48);
 		SmallFont = new Font("Arial", Font.PLAIN, 25);
-
+		Powerups powerup1= new Powerups(powerup1spawnx, powerup1spawny, 30, 30, 0);
+		poweruparray.add(powerup1);
 	}
 
 	final int END = 2;
@@ -85,10 +90,16 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		ball1.update();
 		paddle1.draw(g);
 		ball1.draw(g);
+		powerup1.draw(g);
+		if (ball1.x > powerup1spawnx - 30 && ball1.x < powerup1spawnx + 30 && ball1.y > powerup1spawny - 30 && ball1.y < powerup1spawny + 30) {
+			ball1.speed = 1;
+		System.out.println("powerup worked");
 		
-	//ballspeed++;			
+		}
+		
+		//ballspeed++;			
 	framecount++;
-	if (framecount % 100 == 0) {
+	if (framecount % 150 == 0) {
 		ball1.speed++;
 	}
 	if (ball1.x > 638 || ball1.x < 1) {
@@ -115,7 +126,7 @@ public void checkCollison() {
 			int ydiff = ball1.y - paddle0.y; 
 			if (ydiff <= 20) {
 				ball1.yvelocity = -3;
-			}else if (ydiff < 30) {
+			}else if (ydiff < 1) {
 				ball1.yvelocity = 0;
 			}else {
 				ball1.yvelocity = 3;
@@ -130,7 +141,7 @@ public void checkCollison() {
 			ball1.yvelocity = 3;
 		}
 		
-		if (ball1.y > 330) {
+		if (ball1.y > 320) {
 			ball1.yvelocity = -3;
 		}
 

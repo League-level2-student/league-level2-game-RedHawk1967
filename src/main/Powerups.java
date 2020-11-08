@@ -13,10 +13,15 @@ public class Powerups extends GameObject{
 	public void draw(Graphics g) {
 		//powerup1
 		g.setColor(Color.RED);
-		//g.drawRect(x, y, width, height);
+		g.drawRect(x, y, width, height);
 	}
 
-
+	public void close() {
+		// TODO Auto-generated method stub
+//closes powerups when they are used
+	
+	
+	}
 
 
 }
