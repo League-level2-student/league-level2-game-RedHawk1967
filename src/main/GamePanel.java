@@ -18,10 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
-	Random powerup1y = new Random();
-	Random powerup1x = new Random();
-	Random ballC = new Random();
+	Random randgen = new Random();
+
+	
 	ArrayList<Powerups> poweruparray = new ArrayList<Powerups>(); 
+	
 	int framecount = 0;
 	public int paddleSpawnx0 = 595;
 	public int paddleSpawny0 = 179;
@@ -29,8 +30,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public int paddleSpawny1 = 179;
 	public int ballSpawnx = 318;
 	public int ballSpawny = 179;
-	public int powerup1spawnx = powerup1x.nextInt(607);
-	public int  powerup1spawny = powerup1y.nextInt(308);
+	
 	Timer frameDraw;
 	Font MenuFont;
 	Font SmallFont;
@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public GamePanel() {
 		MenuFont = new Font("Arial", Font.PLAIN, 48);
 		SmallFont = new Font("Arial", Font.PLAIN, 25);
-		Powerups powerup1= new Powerups(powerup1spawnx, powerup1spawny, 30, 30, 0);
+		Powerups powerup1= new Powerups(randgen.nextInt(607), randgen.nextInt(308), 30, 30, 0);
 		poweruparray.add(powerup1);
 	}
 
@@ -77,29 +77,37 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		g.setFont(SmallFont);
 		g.drawString("Press Enter To Start", 100, 300);
 		g.drawString("By Jack", 200, 100);
-
+		
 	}
 
-	void drawGameState(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, PONG.WIDTH, PONG.HEIGHT);
-		checkCollison();
-		paddle0.draw(g);
+	public void updateGameState() {
 		paddle0.update();
 		paddle1.update();
 		ball1.update();
-		paddle1.draw(g);
-		ball1.draw(g);
-		powerup1.draw(g);
-		if (ball1.x > powerup1spawnx - 30 && ball1.x < powerup1spawnx + 30 && ball1.y > powerup1spawny - 30 && ball1.y < powerup1spawny + 30) {
-			ball1.speed = 1;
-		System.out.println("powerup worked");
+		for (int i = 0; i < poweruparray.size(); i++) {
+			poweruparray.get(i).update();
 		
 		}
+checkCollison();
+	}
+	void drawGameState(Graphics g) {
+	
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, PONG.WIDTH, PONG.HEIGHT);
+		
+		paddle0.draw(g);
+		
+		paddle1.draw(g);
+		ball1.draw(g);
+	for (int i = 0; i < poweruparray.size(); i++) {
+		poweruparray.get(i).draw(g);
+		
+	}
+		
 		
 		//ballspeed++;			
 	framecount++;
-	if (framecount % 150 == 0) {
+	if (framecount % 100 == 0) {
 		ball1.speed++;
 	}
 	if (ball1.x > 638 || ball1.x < 1) {
@@ -119,8 +127,16 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	}
 
 public void checkCollison() {
+	for (int i = poweruparray.size() - 1; i >= 0; i--) {
 		
 		
+	if (ball1.x > poweruparray.get(i).x - 30 && ball1.x < poweruparray.get(i).x + 30 && ball1.y > poweruparray.get(i).y - 30 && ball1.y < poweruparray.get(i).y  + 30) {
+		ball1.speed = 1;
+	System.out.println("powerup worked");
+	
+	poweruparray.remove(i);
+	}
+	}
 		if (paddle0.collisionBox.intersects(ball1.collisionBox)) {
 			ball1.xvelocity = -ball1.speed;
 			int ydiff = ball1.y - paddle0.y; 
@@ -213,7 +229,7 @@ public void checkCollison() {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+		updateGameState();
 		repaint();
 
 	}
