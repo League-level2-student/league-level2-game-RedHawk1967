@@ -43,8 +43,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public GamePanel() {
 		MenuFont = new Font("Arial", Font.PLAIN, 48);
 		SmallFont = new Font("Arial", Font.PLAIN, 25);
-		Powerups powerup1= new Powerups(randgen.nextInt(607), randgen.nextInt(308), 30, 30, 0);
+		Powerups powerup0= new Powerups(randgen.nextInt(590), randgen.nextInt(290), 30, 30, 0);
+		Powerups powerup1= new Powerups(randgen.nextInt(590), randgen.nextInt(290), 30, 30, 0);
+		Powerups powerup2= new Powerups(randgen.nextInt(590), randgen.nextInt(290), 30, 30, 0);
+		poweruparray.add(powerup0);
 		poweruparray.add(powerup1);
+		poweruparray.add(powerup2);
 	}
 
 	final int END = 2;
@@ -107,7 +111,7 @@ checkCollison();
 		
 		//ballspeed++;			
 	framecount++;
-	if (framecount % 100 == 0) {
+	if (framecount % 160 == 0) {
 		ball1.speed++;
 	}
 	if (ball1.x > 638 || ball1.x < 1) {
@@ -131,9 +135,21 @@ public void checkCollison() {
 		
 		
 	if (ball1.x > poweruparray.get(i).x - 30 && ball1.x < poweruparray.get(i).x + 30 && ball1.y > poweruparray.get(i).y - 30 && ball1.y < poweruparray.get(i).y  + 30) {
-		ball1.speed = 1;
-	System.out.println("powerup worked");
+		
 	
+	if (i == 0) {
+		ball1.x = randgen.nextInt(600);
+		ball1.y = randgen.nextInt(320);
+		ball1.speed = 1;
+		System.err.println("powerup " + i + " worked");
+	}else if (i == 1) {
+		System.err.println("powerup " + i + " worked");
+		ball1.xvelocity = -ball1.xvelocity;
+	
+	}else if (i == 2) {
+		System.err.println("powerup " + i + " worked");
+		ball1.yvelocity = -ball1.yvelocity;
+	}
 	poweruparray.remove(i);
 	}
 	}

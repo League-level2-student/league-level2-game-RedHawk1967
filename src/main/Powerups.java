@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public class Powerups extends GameObject{
 
-	public Powerups(int xinfo, int yinfo, int widthinfo, int heightinfo, int speedinfo) {
+	public Powerups(int xinfo, int yinfo, int widthinfo, int heightinfo, int speedinfo ) {
 		super(xinfo, yinfo, widthinfo, heightinfo, speedinfo);
 		// TODO Auto-generated constructor stub
 	}
