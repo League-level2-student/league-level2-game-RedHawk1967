@@ -43,9 +43,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public GamePanel() {
 		MenuFont = new Font("Arial", Font.PLAIN, 48);
 		SmallFont = new Font("Arial", Font.PLAIN, 25);
-		Powerups powerup0= new Powerups(randgen.nextInt(590), randgen.nextInt(290), 30, 30, 0);
-		Powerups powerup1= new Powerups(randgen.nextInt(590), randgen.nextInt(290), 30, 30, 0);
-		Powerups powerup2= new Powerups(randgen.nextInt(590), randgen.nextInt(290), 30, 30, 0);
+		Powerups powerup0= new Powerups(randgen.nextInt(560), randgen.nextInt(290), 30, 30, 0);
+		Powerups powerup1= new Powerups(randgen.nextInt(560), randgen.nextInt(290), 30, 30, 0);
+		Powerups powerup2= new Powerups(randgen.nextInt(560), randgen.nextInt(290), 30, 30, 0);
 		poweruparray.add(powerup0);
 		poweruparray.add(powerup1);
 		poweruparray.add(powerup2);

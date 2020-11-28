@@ -14,6 +14,7 @@ public class Powerups extends GameObject{
 		//powerup1
 		g.setColor(Color.RED);
 		g.drawRect(x, y, width, height);
+		g.fillRect(x, y, width, height);
 	}
 
 	public void close() {
