@@ -31,6 +31,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public int ballSpawnx = 318;
 	public int ballSpawny = 179;
 	
+	
+	Timer Poweruptime;
 	Timer frameDraw;
 	Font MenuFont;
 	Font SmallFont;
@@ -70,6 +72,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	void startGame() {
 		frameDraw = new Timer(1000 / 60, this);
 		frameDraw.start();
+		Poweruptime = new Timer(1000 / 60,this);
+	
 	}
 
 	void drawMenuState(Graphics g) {
