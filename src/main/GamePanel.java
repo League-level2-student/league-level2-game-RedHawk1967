@@ -20,7 +20,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	Random randgen = new Random();
 
-	
+	ArrayList<Ball> ballarray = new ArrayList<Ball>();
 	ArrayList<Powerups> poweruparray = new ArrayList<Powerups>(); 
 	
 	int framecount = 0;
@@ -51,6 +51,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		poweruparray.add(powerup0);
 		poweruparray.add(powerup1);
 		poweruparray.add(powerup2);
+		ballarray.add(ball1);
 	}
 
 	final int END = 2;
@@ -92,6 +93,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		paddle0.update();
 		paddle1.update();
 		ball1.update();
+		//ballarray.get(0);
 		for (int i = 0; i < poweruparray.size(); i++) {
 			poweruparray.get(i).update();
 		
