@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		paddle0.update();
 		paddle1.update();
 		ball1.update();
-		//ballarray.get(0);
+		ballarray.get(0);
 		for (int i = 0; i < poweruparray.size(); i++) {
 			poweruparray.get(i).update();
 		
@@ -117,6 +117,10 @@ checkCollison();
 		
 		//ballspeed++;			
 	framecount++;
+	if (currentState == GAME) {
+		ball1.speed = 3;
+	}
+	
 	if (framecount % 160 == 0) {
 		ball1.speed++;
 	}
@@ -200,7 +204,7 @@ public void checkCollison() {
 		// left rect up w down s
 		// right rect up up arrow down down arrow
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			currentState++;
+			currentState++;  ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 25,this); ball1.yvelocity = 0; ball1.xvelocity = 3; ball1.speed = 3;
 
 			if (currentState > 2) {
 				currentState = 0;
