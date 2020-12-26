@@ -20,7 +20,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	Random randgen = new Random();
 
-	ArrayList<Ball> ballarray = new ArrayList<Ball>();
+
 	ArrayList<Powerups> poweruparray = new ArrayList<Powerups>(); 
 	
 	int framecount = 0;
@@ -51,7 +51,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		poweruparray.add(powerup0);
 		poweruparray.add(powerup1);
 		poweruparray.add(powerup2);
-		ballarray.add(ball1);
+		
 	}
 
 	final int END = 2;
@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		paddle0.update();
 		paddle1.update();
 		ball1.update();
-		ballarray.get(0);
+		
 		for (int i = 0; i < poweruparray.size(); i++) {
 			poweruparray.get(i).update();
 		
@@ -106,7 +106,7 @@ checkCollison();
 		g.fillRect(0, 0, PONG.WIDTH, PONG.HEIGHT);
 		
 		paddle0.draw(g);
-		
+		System.err.println(ball1.speed);
 		paddle1.draw(g);
 		ball1.draw(g);
 	for (int i = 0; i < poweruparray.size(); i++) {
@@ -117,11 +117,10 @@ checkCollison();
 		
 		//ballspeed++;			
 	framecount++;
-	if (currentState == GAME) {
-		ball1.speed = 3;
-	}
+;
 	
-	if (framecount % 160 == 0) {
+	
+	if (framecount % 100 == 0) {
 		ball1.speed++;
 	}
 	if (ball1.x > 638 || ball1.x < 1) {
@@ -204,8 +203,12 @@ public void checkCollison() {
 		// left rect up w down s
 		// right rect up up arrow down down arrow
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			
 			currentState++;  ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 25,this); ball1.yvelocity = 0; ball1.xvelocity = 3; ball1.speed = 3;
-
+			paddle1.x = paddleSpawnx1;
+			paddle1.y = paddleSpawny1;
+			paddle0.x = paddleSpawnx0;
+			paddle0.y = paddleSpawny0;
 			if (currentState > 2) {
 				currentState = 0;
 			}
