@@ -204,7 +204,11 @@ public void checkCollison() {
 		// right rect up up arrow down down arrow
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			
-			currentState++;  ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 25,this); ball1.yvelocity = 0; ball1.xvelocity = 3; ball1.speed = 3;
+			currentState++;   ball1 = new Ball(ballSpawnx, ballSpawny, 5, 5, 25,this); ball1.yvelocity = 0; ball1.xvelocity = 3; ball1.speed = 3;
+			framecount = 0;
+			ball1.xvelocity = 3;
+			ball1.yvelocity = 0;
+			ball1.speed = 3;
 			paddle1.x = paddleSpawnx1;
 			paddle1.y = paddleSpawny1;
 			paddle0.x = paddleSpawnx0;
@@ -215,12 +219,7 @@ public void checkCollison() {
 			startGame();
 		}
 
-		if (currentState == GAME) {
-
-			if (e.getKeyCode() == KeyEvent.VK_UP && paddle0.y > 0) {
-
-				paddle0.up();
-			}
+		 
 			if (e.getKeyCode() == KeyEvent.VK_DOWN && paddle0.y < 265) {
 				paddle0.down();
 			}
@@ -247,7 +246,7 @@ public void checkCollison() {
 
 		}
 
-	}
+	
 
 	@Override
 	public void keyReleased(KeyEvent e) {
